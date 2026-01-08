@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حساب المعدلات الجامعية | بوابة الطالب</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="theme-toggle-container">
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="تبديل الوضع المظكم">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <header class="modern-header">
+        <div class="container header-container">
+            <div class="logo-section">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>حساب المعدل الجامعي</h1>
+                    <p>مهندس دولة في الإعلام الآلي</p>
+                </div>
+            </div>
+            
+            <div class="header-stats">
+                <div class="stat-item">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">تخصصات</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10</span>
+                    <span class="stat-label">فصول دراسية</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">+150</span>
+                    <span class="stat-label">مادة دراسية</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="wave wave-1"></div>
+        <div class="wave wave-2"></div>
+        <div class="wave wave-3"></div>
+    </header>
+
+    <main class="container main-content">
+        <section class="control-section">
+            <div class="section-header">
+                <h2><i class="fas fa-cogs"></i> إعدادات الحساب</h2>
+                <p>اختر المسار الدراسي لحساب المعدل</p>
+            </div>
+            
+            <div class="control-grid">
+                <div class="control-card">
+                    <div class="control-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="control-content">
+                        <label for="phaseSelect">الطور الدراسي</label>
+                        <div class="select-container">
+                            <select id="phaseSelect" class="modern-select">
+                                <option value="">-- اختر الطور --</option>
+                                <option value="prep">الطور التحضيري</option>
+                                <option value="spec">طور التخصص</option>
+                            </select>
+                            <i class="fas fa-chevron-down select-arrow"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-card hidden" id="specGroup">
+                    <div class="control-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="control-content">
+                        <label for="specialtySelect">التخصص</label>
+                        <div class="select-container">
+                            <select id="specialtySelect" class="modern-select">
+                                <option value="">-- اختر التخصص --</option>
+                                <option value="ds">علوم البيانات (Data Science)</option>
+                                <option value="gl">الهندسة البرمجية (Software Engineering)</option>
+                                <option value="ai">الذكاء الاصطناعي (Artificial Intelligence)</option>
+                                <option value="networks">الشبكات (Networks)</option>
+                                <option value="security">الأمن المعلوماتي (Cybersecurity)</option>
+                                <option value="si">نظم المعلومات (Information Systems)</option>
+                            </select>
+                            <i class="fas fa-chevron-down select-arrow"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-card hidden" id="semesterGroup">
+                    <div class="control-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="control-content">
+                        <label for="semesterSelect">الفصل الدراسي</label>
+                        <div class="select-container">
+                            <select id="semesterSelect" class="modern-select">
+                                <option value="">-- اختر الفصل --</option>
+                            </select>
+                            <i class="fas fa-chevron-down select-arrow"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="subjects-section" id="subjectsSection">
+            <div class="section-header">
+                <h2><i class="fas fa-book-open"></i> المواد الدراسية</h2>
+                <p>أدخل العلامات لحساب المعدل</p>
+            </div>
+            
+            <div id="subjectsContainer" class="subjects-container">
+                <div class="empty-state">
+                    <div class="empty-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h3>ابدأ باختيار المسار الدراسي</h3>
+                    <p>اختر الطور والتخصص والفصل الدراسي لعرض المواد</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="results-section hidden" id="resultsSection">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-line"></i> النتائج</h2>
+                <p>نتائج حساب المعدل</p>
+            </div>
+            
+            <div class="results-container">
+                <div class="result-card primary">
+                    <div class="result-header">
+                        <h3>المعدل الفصلي</h3>
+                        <div class="result-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="result-content">
+                        <div class="score-display">
+                            <div class="score-circle">
+                                <span id="semesterScore" class="score-value">0.00</span>
+                                <div class="score-label">من 20</div>
+                            </div>
+                        </div>
+                        
+                        <div id="statusMsg" class="status-message">
+                            <i class="fas fa-info-circle"></i>
+                            <span>ادخل العلامات ثم اضغط على "حساب المعدل"</span>
+                        </div>
+                        
+                        <div class="result-actions">
+                            <button id="calcBtn" class="btn btn-primary btn-lg">
+                                <i class="fas fa-calculator"></i>
+                                حساب المعدل
+                            </button>
+                            <button id="resetBtn" class="btn btn-secondary btn-lg">
+                                <i class="fas fa-redo"></i>
+                                إعادة تعيين
+                            </button>
+                            <button id="showPrintBtn" class="btn btn-info">
+                                <i class="fas fa-file-alt"></i>
+                                كشف النقاط
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-card secondary">
+                    <div class="result-header">
+                        <h3>المعدل السنوي</h3>
+                        <div class="result-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="result-content">
+                        <div class="annual-instructions">
+                            <p>لحساب المعدل السنوي، أدخل معدل الفصل الآخر:</p>
+                        </div>
+                        
+                        <div class="annual-input-container">
+                            <div class="input-group">
+                                <label for="prevSemInput">
+                                    <i class="fas fa-history"></i>
+                                    معدل الفصل الآخر
+                                </label>
+                                <input type="number" id="prevSemInput" class="modern-input" 
+                                       placeholder="مثال: 14.25" step="0.01" min="0" max="20">
+                            </div>
+                            
+                            <button id="calcAnnualBtn" class="btn btn-success">
+                                <i class="fas fa-calculator"></i>
+                                حساب المعدل السنوي
+                            </button>
+                        </div>
+                        
+                        <div class="annual-result">
+                            <div class="result-label">المعدل السنوي:</div>
+                            <div id="annualScore" class="final-score">--</div>
+                        </div>
+                        
+                        <div class="result-hint">
+                            <i class="fas fa-lightbulb"></i>
+                            المعدل السنوي = (معدل الفصل الحالي + معدل الفصل الآخر) ÷ 2
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="info-section">
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <h4>كيفية الاستخدام</h4>
+                    <p>1. اختر الطور الدراسي</p>
+                    <p>2. اختر التخصص (لطور التخصص)</p>
+                    <p>3. اختر الفصل الدراسي</p>
+                    <p>4. أدخل علامات المواد</p>
+                    <p>5. انقر على "حساب المعدل"</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h4>نظام التقييم</h4>
+                    <p>• كل مادة لها معامل مختلف</p>
+                    <p>• المعدل يحسب على أساس 20</p>
+                    <p>• النجاح عند معدل 10/20 أو أكثر</p>
+                    <p>• المعدل السنوي متوسط الفصلين</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h4>حفظ النتائج</h4>
+                    <p>• النتائج تحفظ تلقائيًا في المتصفح</p>
+                    <p>• يمكنك تصفح المواد السابقة</p>
+                    <p>• إمكانية طباعة النتائج</p>
+                    <p>• دعم الوضع المظكم</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+<section class="print-section hidden" id="printSection">
+    <div class="print-container">
+        <div class="print-header">
+            <div class="print-logo">
+                <i class="fas fa-university"></i>
+                <h2>كشف النقاط الجامعي</h2>
+            </div>
+            <div class="print-info">
+                <div class="info-row">
+                    <span class="label">التخصص:</span>
+                    <span id="printSpecialty" class="value">--</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">الفصل الدراسي:</span>
+                    <span id="printSemester" class="value">--</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="print-table-container">
+            <table class="print-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>المادة</th>
+                        <th>المعامل</th>
+                        <th>TP</th>
+                        <th>TD</th>
+                        <th>EXAM</th>
+                        <th>المعدل</th>
+                        <th>النقاط</th>
+                        <th>الملاحظات</th>
+                    </tr>
+                </thead>
+                <tbody id="printSubjectsTable">
+                </tbody>
+                <tfoot>
+                    <tr class="total-row">
+                        <td colspan="6" class="text-end"><strong>المجموع:</strong></td>
+                        <td id="printTotalAverage">--</td>
+                        <td id="printTotalPoints">--</td>
+                        <td>--</td>
+                    </tr>
+                    <tr class="gpa-row">
+                        <td colspan="6" class="text-end"><strong>المعدل الفصلي:</strong></td>
+                        <td colspan="3" id="printFinalGPA">--</td>
+                    </tr>
+                    <tr class="status-row">
+                        <td colspan="6" class="text-end"><strong>الحالة:</strong></td>
+                        <td colspan="3" id="printStatus">--</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        
+        <div class="print-footer">
+            <div class="print-date">
+                <p>تاريخ الطباعة: <span id="printDate"></span></p>
+                <p>تم الإنشاء بواسطة: OPENSOURCEBISKRA</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="print-actions">
+        <button id="printBtn" class="btn btn-print">
+            <i class="fas fa-print"></i>
+            طباعة الكشف
+        </button>
+        <button id="closePrintBtn" class="btn btn-secondary">
+            <i class="fas fa-times"></i>
+            إغلاق
+        </button>
+        <button id="savePdfBtn" class="btn btn-success">
+            <i class="fas fa-file-pdf"></i>
+            حفظ كـ PDF
+        </button>
+    </div>
+</section>
+
+    <footer class="modern-footer">
+        <div class="container footer-container">
+            <div class="footer-logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>حساب المعدل الجامعي</span>
+            </div>
+            
+            <div class="footer-info">
+                <p>أداة مجانية لحساب المعدلات الجامعية لطلبة الإعلام الآلي</p>
+                <p class="copyright">© 2026 OPENSOURCE BISKRA - جميع الحقوق محفوظة</p>
+            </div>
+            
+            <div class="footer-links">
+                <a href="#" class="footer-link">
+                    <i class="fas fa-question-circle"></i>
+                    المساعدة
+                </a>
+                <a href="#" class="footer-link">
+                    <i class="fas fa-envelope"></i>
+                    اتصل بنا
+                </a>
+                <a href="#" class="footer-link">
+                    <i class="fas fa-code"></i>
+                    المصدر المفتوح
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
